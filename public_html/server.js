@@ -5,11 +5,14 @@ var mongoose = require('mongoose');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 
 // config
 //mongoose.connect('mongodb://localhost/myapp');
 
-app.use(express.static(__dirname + '../'));
+app.use(express.static(__dirname + '/'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
@@ -20,6 +23,27 @@ app.get('*', function(req, res){
     res.sendfile('index.html');
 });
 
+//error handling
+
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
+});
 
 app.listen(3000);
 console.log('app listening on 3000');

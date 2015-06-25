@@ -1,14 +1,15 @@
 {
-    "name": "App",
-    "version" : "0.0.0",
-    "description" : "App",
-    "main" : "server.js",
-    "author" : "Phillip King",
-    "dependencies" : {
-        "express"    : "~4.7.2",
-        "mongoose"   : "~3.6.2",
-        "morgan"     : "~1.2.2",
-        "body-parser": "~1.5.2",
-        "method-override": "~2.1.2"
-    }
+  "name": "App",
+  "version": "0.0.0",
+  "description": "App",
+  "main": "server.js",
+  "author": "Phillip King",
+  "dependencies": {
+    "body-parser": "~1.5.2",
+    "express": "~4.7.2",
+    "method-override": "~2.1.2",
+    "mongoose": "~3.6.2",
+    "morgan": "~1.2.2",
+    "socket.io": "^1.3.5"
+  }
 }

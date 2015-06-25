@@ -1,4 +1,13 @@
 <div>
-    <input class="chatField" ng-model="chatInput">
-    {{chatInput}}
+    
+    <ul id="messages">
+        <li>
+            {{chatInput}}
+        </li>
+    </ul>
+    
+    <form action="">
+        <input ng-submit="sendMessage()" ng-model="chatInput" id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    
 </div>
