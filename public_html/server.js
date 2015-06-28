@@ -8,6 +8,7 @@ var methodOverride = require('method-override');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+//var routes = require('./routes/index');
 
 // config
 //mongoose.connect('mongodb://localhost/myapp');

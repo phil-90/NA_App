@@ -4,7 +4,12 @@ var App = angular.module('Services', []);
 App.factory('ChatService', [function(){
         return {
             on: function(eventName, callBack){
-                
+                io.on('connection', function(socket){
+                    console.log('a user connected');
+                    socket.on('disconnect', function(){
+                        console.log('disconnected');
+                    });
+                });
             }
         };
 }]);
@@ -35,7 +40,7 @@ App.factory('AuthenticateFactory',[ 'SessionService', '$http', function(SessionS
         };
         var isSessionCached = function(){
             return SessionService.get('Authenticated');
-        }
+        };
         return{
             login: function(credentials){
                 var login = $http.post('', credentials);

@@ -2,12 +2,14 @@
     
     <ul id="messages">
         <li>
-            {{chatInput}}
+           
         </li>
     </ul>
     
-    <form action="">
-        <input ng-submit="sendMessage()" ng-model="chatInput" id="m" autocomplete="off" /><button>Send</button>
+    <form ng-submit="login(loginId)">
+        <input placeholder="Username" ng-model="loginId.name" autocomplete="off" />
+        <input placeholder="Password" type="password" ng-submit="login(loginid)" ng-model="loginId.passwork" autocomplete="off" />
+        <button type="submit">Send</button>
     </form>
     
 </div>

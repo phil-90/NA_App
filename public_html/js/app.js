@@ -10,6 +10,7 @@ App.config(['$routeProvider', function($routeProvider){
                 .when('/', {controller: 'IndexCtrl', templateUrl: 'views/index.html'})
                 .when('/chat',{controller: 'ChatCtrl', templateUrl:'views/chat.html'})
             .otherwise({redirectTo: '/'});
+    
         //To be added once launched
         //$locationProvider.html5Mode(true);
 }]);
