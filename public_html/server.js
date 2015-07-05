@@ -24,6 +24,15 @@ app.get('*', function(req, res){
     res.sendfile('index.html');
 });
 
+//io
+io.on('connection', function(socket){
+    console.log('connected');
+    socket.emit('greetings', {msg: 'hello'});
+    socket.on('something', function(data){
+        console.log(data);
+    });
+});
+
 //error handling
 
 if (app.get('env') === 'development') {

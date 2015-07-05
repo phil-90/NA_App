@@ -2,6 +2,8 @@ var App = angular.module('Services', []);
 
 //Handles the value for the inputs of a user's chat
 App.factory('ChatService', [function(){
+        var socket = io();
+        console.log(socket);
         return {
             on: function(eventName, callBack){
                 io.on('connection', function(socket){
@@ -9,6 +11,14 @@ App.factory('ChatService', [function(){
                     socket.on('disconnect', function(){
                         console.log('disconnected');
                     });
+                });
+            },
+            emit: function(eventName, data, callBack){
+                socket.emit(eventName, data, function(){
+                    var args = arguments;
+                    if(callback){
+                        callback.apply(socket, args);
+                    }
                 });
             }
         };
