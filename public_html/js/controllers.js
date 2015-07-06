@@ -14,6 +14,7 @@ App.controller('ChatCtrl',['$scope', 'ChatService', function($scope, ChatService
     
     $scope.sendMessage = function(msg){
         ChatService.emit("something", msg);
+        $scope.chatInput === data;
     }
     ChatService.on("greetings", function(data){
         console.log("user data: " + JSON.stringify(data));

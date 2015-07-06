@@ -5,14 +5,20 @@ App.factory('ChatService', [function(){
         var socket = io();
         console.log(socket);
         return {
-            on: function(eventName, callBack){
-                io.on('connection', function(socket){
-                    console.log('a user connected');
-                    socket.on('disconnect', function(){
-                        console.log('disconnected');
-                    });
+            on: function (eventName, callback) {
+            function wrapper() {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    callback.apply(socket, args);
                 });
-            },
+            }
+ 
+            socket.on(eventName, wrapper);
+ 
+            return function () {
+                socket.removeListener(eventName, wrapper);
+            };
+        },
             emit: function(eventName, data, callBack){
                 socket.emit(eventName, data, function(){
                     var args = arguments;
