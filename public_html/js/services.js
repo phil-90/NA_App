@@ -1,11 +1,10 @@
 var App = angular.module('Services', []);
 
 //Handles the value for the inputs of a user's chat
-App.factory('Socket', [function(){
-        var socket = io();
-      
+App.factory('SocketService', [function(){
+        var socket = io.connect('http://localhost:3000/?#/chat');
+        
         return socket;
-           
 }]);
 
 //Create a session for the user

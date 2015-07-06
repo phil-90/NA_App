@@ -28,8 +28,11 @@ app.get('*', function(req, res){
 io.on('connection', function(socket){
   socket.on('send message', function(data){
     io.emit('get message', data);
-    console.log(data);
+   // console.log(data);
   });
+  socket.on('disconnected', function(){
+      console.log('asdfasdf');
+  })
 });
 
 //error handling

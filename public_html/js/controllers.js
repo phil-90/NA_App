@@ -8,20 +8,20 @@ App.controller('IndexCtrl', ['$scope', function($scope){
     };
 }]);
 
-App.controller('ChatCtrl',['$scope', 'Socket', function($scope, Socket){
+App.controller('ChatCtrl',['$scope', 'SocketService', function($scope, SocketService){
     //var socket = io();
     $scope.msgs = [];
     
-    $scope.sendMessage = function(){
-        Socket.emit('send message', $scope.msg);
-        console.log($scope.msgs);
-      
+    $scope.sendMessage = function(data){
+        SocketService.emit('send message', data);
+        console.log(SocketService);
+        console.log(SocketService.connected);
     };
     
-    Socket.on('get message', function(data){
+    SocketService.on('get message', function(data){
         msgs.push(data);
         $scope.$digest();
-        console.log(data);
+        
     });
 }]);
 
