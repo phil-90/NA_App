@@ -1,33 +1,11 @@
 var App = angular.module('Services', []);
 
 //Handles the value for the inputs of a user's chat
-App.factory('ChatService', [function(){
+App.factory('Socket', [function(){
         var socket = io();
-        console.log(socket);
-        return {
-            on: function (eventName, callback) {
-            function wrapper() {
-                var args = arguments;
-                $rootScope.$apply(function () {
-                    callback.apply(socket, args);
-                });
-            }
- 
-            socket.on(eventName, wrapper);
- 
-            return function () {
-                socket.removeListener(eventName, wrapper);
-            };
-        },
-            emit: function(eventName, data, callBack){
-                socket.emit(eventName, data, function(){
-                    var args = arguments;
-                    if(callback){
-                        callback.apply(socket, args);
-                    }
-                });
-            }
-        };
+      
+        return socket;
+           
 }]);
 
 //Create a session for the user

@@ -1,13 +1,15 @@
 <div>
     
     <ul id="messages">
-        <li>
-            {{chatInput}}
+        <li ng-repeat="msg in msgs">
+           
+            {{msg.text}}
         </li>
     </ul>
     
-    <form action="">
-        <input ng-submit="sendMessage(chatInput)" ng-model="chatInput" id="m" autocomplete="off" /><button>Send</button>
+    <form ng-submit="sendMessage()" action="">
+        <input type="text" ng-model="msg.text" id="m" autocomplete="off" />
+        <button>Send</button>
     </form>
     
 </div>

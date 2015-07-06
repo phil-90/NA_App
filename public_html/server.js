@@ -26,11 +26,10 @@ app.get('*', function(req, res){
 
 //io
 io.on('connection', function(socket){
-    console.log('connected');
-    socket.emit('greetings', {msg: 'hello'});
-    socket.on('something', function(data){
-        console.log(data);
-    });
+  socket.on('send message', function(data){
+    io.emit('get message', data);
+    console.log(data);
+  });
 });
 
 //error handling

@@ -3,26 +3,25 @@ var App = angular.module('Controllers',[]);
 App.controller('IndexCtrl', ['$scope', function($scope){
     
     $scope.login = function(credentials){
-        console.log(window.location);
+        
         window.location.replace('#/chat');
     };
 }]);
 
-App.controller('ChatCtrl',['$scope', 'ChatService', function($scope, ChatService){
-        
-    $scope.recievedTroughSocket = "still waiting for data...";
+App.controller('ChatCtrl',['$scope', 'Socket', function($scope, Socket){
+    //var socket = io();
+    $scope.msgs = [];
     
-    $scope.sendMessage = function(msg){
-        ChatService.emit("something", msg);
-        $scope.chatInput === data;
-    }
-    ChatService.on("greetings", function(data){
-        console.log("user data: " + JSON.stringify(data));
-        $scope.recievedTroughSocket = data.msg;
+    $scope.sendMessage = function(){
+        Socket.emit('send message', $scope.msg);
+        console.log($scope.msgs);
+      
+    };
+    
+    Socket.on('get message', function(data){
+        msgs.push(data);
+        $scope.$digest();
+        console.log(data);
     });
-        
-        
-        
-        
 }]);
 
