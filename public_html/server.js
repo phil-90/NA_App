@@ -20,9 +20,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vnd.api+json' }));
 app.use(methodOverride());
 
-app.get('*', function(req, res){
-    res.sendfile('index.html');
-});
+var login = require('./routes/login');
+var features = require('./routes/features');
+
+
+app.use('/login', login);
 
 //io
 io.on('connection', function(socket){
@@ -57,5 +59,5 @@ app.use(function(err, req, res, next) {
     });
 });
 
-app.listen(3000);
+http.listen(3000);
 console.log('app listening on 3000');
